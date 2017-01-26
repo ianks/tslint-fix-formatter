@@ -8,7 +8,7 @@ export class Formatter extends Lint.Formatters.AbstractFormatter {
 
         const fileName = failures[0].getFileName();
         const fixes = failures.map((f) => f.getFix()).filter((f): f is Lint.Fix => !!f);
-        const source = fs.readFileSync(fileName, { encoding: 'utf-8' });
+        const source = fs.readFileSync(fileName, { encoding: "utf-8" });
 
         return Lint.Fix.applyAll(source, fixes);
     }
@@ -19,10 +19,12 @@ export class Formatter extends Lint.Formatters.AbstractFormatter {
         for (const failure of failures) {
             const fileName = failure.getFileName();
 
-            if (fileName in visitedCache) {
-                throw new Error("Only one file can be linted with the fix linter");
-            } else {
+            if (!(fileName in visitedCache)) {
                 visitedCache[fileName] = true;
+
+                if (Object.keys(visitedCache).length > 1) {
+                    throw new Error("Only one file can be linted with the fix linter");
+                }
             }
         }
     }
