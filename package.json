@@ -1,6 +1,6 @@
 {
   "name": "tslint-fix-formatter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A tslint formatter which applies fixes and prints the result",
   "main": "fixFormatter.js",
   "repository": "https://github.com/adhawk/tslint-fix-formatter",
